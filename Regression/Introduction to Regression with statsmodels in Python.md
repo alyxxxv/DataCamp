@@ -66,3 +66,23 @@ mdl_payment_vs_claims = ols("total_payment ~ n_class", data=swedish_motor_insura
 mdl_payment_vs_claims=mdl_payment_vs_claims.fit()
 print(mdl_payment_vs_claims.params)
 ```
+
+**Categorical explanatory variables**
+
+Visualizing 1 numeric and 1 categorical variable 
+
+``` python
+#membuat grafik histogram berdasarkan data kategorikal
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+sns.displot(data=fish, x="mass_g", col="species", col_wrap=2,bins=9)
+plt.show()
+```
+<img width="204" alt="2022-04-13_20h06_42" src="https://user-images.githubusercontent.com/87213160/163187076-9a64fa76-7dd9-47fc-b2ca-f4985c05ce38.png">
+
+``` python
+#SUMMARY STATISTICS MEAN MASS BY SPECIES
+summary_stats =fish.groupby("species")["mass_g"].mean()
+print(summary_stats)
+```
