@@ -38,8 +38,31 @@ plt.show()
 adding a linear trend line
 ``` python
 sns.regplot(x="n_claims", y="total_payment_sek", data=swedish_motor_insurance, ci=none)
-
 ```
 
+adding a linear trend line
+``` python
+# Draw a trend line on the scatter plot of price_twd_msq vs. n_convenience
+sns.regplot(x="n_convenience",
+         y="price_twd_msq",
+         data=taiwan_real_estate,
+         ci=None,
+         scatter_kws={'alpha': 0.5})
 
+# Show the plot
+plt.show()
+```
 
+Straight Line atau garis lurus dibedakan menjadi 2. 
+1. Intercept : ketika nilai y ketika berada x = 0
+2. Slope : kecuraman dari garis. persamaannya adalah y = intercept + slope*x
+
+untuk running model linear regression. 
+
+``` python
+from statsmodels.formula.api import ols
+mdl_payment_vs_claims = ols("total_payment ~ n_class", data=swedish_motor_insurance
+
+mdl_payment_vs_claims=mdl_payment_vs_claims.fit()
+print(mdl_payment_vs_claims.params)
+```
