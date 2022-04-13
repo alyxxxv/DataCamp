@@ -86,3 +86,72 @@ plt.show()
 summary_stats =fish.groupby("species")["mass_g"].mean()
 print(summary_stats)
 ```
+
+## Making Predictions ##
+
+kembali ke dataset ikan. Semisal kita hanya ingin melihat data pada ikan air tawar saja, maka bisa menggunakan command 
+
+``` python
+bream = fish[fish["species"] == "Bream"] #melihat data ikan air tawar atau bream 
+print(bream.head())
+```
+
+Data on explanatory values to predict 
+``` python
+explanatory_data = pd.DataFrame({"length_cm": np.arange(20,41)})
+print(mdl_mass_vs_length.predict(explanatory_data))
+```
+np.arange digunakan untuk menentukan rangenya. langkah selanjutnya adalah memanggil prediksi pada model, untuk meneruskan DataFrame dari variabel penjelas sebagai argumen. 
+
+**Predicting inside a DataFrame**
+
+``` python
+explanatory_data = pd.DataFrame({"length_cm": np.arange(20,41)})
+
+prediction_data=explanatory_data.assign(mass_g=mdl_mass_vs_length.predict(explanatory_data))
+
+print(prediction_data)
+```
+
+**Showing the Predictions**
+
+``` python
+import matplotlib.pyplot as plt
+import seaborn as sns
+fig =plt.figure()
+sns.regplot(x="length_cm", y="mass_g", ci=None, data=bream,)
+
+sns.scatterplot(x="length_cm", y="mass_g", data=prediction_data, color= "red", marker = "s")
+
+plt.show()
+```
+
+<img width="217" alt="2022-04-14_05h55_51" src="https://user-images.githubusercontent.com/87213160/163283059-80b490c1-558f-465e-91e8-da0af5819e8d.png">
+
+Extrapolating = means making predictions outside the range of observed data. 
+
+``` python
+little_bream = pd.DataFrame({"length_sm":[10]})
+
+pre_little_bream = little_bream.assign(mass_g = mdl_mass_vs_length.predict(little_bream))
+
+print(pred_little_bream)
+```
+
+``` python
+# Import numpy and alias it np
+import numpy as np
+
+# Create explanatory_data 
+explanatory_data = pd.DataFrame({'n_convenience': np.arange(0, 11)})
+
+# Use mdl_price_vs_conv to predict with explanatory_data, call it price_twd_msq
+price_twd_msq = mdl_price_vs_conv.predict(explanatory_data)
+
+# Print it
+print(price_twd_msq)
+```
+
+
+
+
