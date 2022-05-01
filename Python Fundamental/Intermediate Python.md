@@ -251,3 +251,83 @@ europe['italy'] = data
 # Print europe
 print(europe)
 ```
+
+# Pandas 
+
+merupakan package data manipulasi. 
+
+``` python 
+import pandas as pd 
+brics = pd.DataFrame(dict)
+```
+
+untuk membaca file csv 
+``` python 
+brics = pd.read_csv('path/to/brics.csv')
+```
+
+EXERCISE
+``` python 
+# Pre-defined lists
+names = ['United States', 'Australia', 'Japan', 'India', 'Russia', 'Morocco', 'Egypt']
+dr =  [True, False, False, False, True, True, True]
+cpc = [809, 731, 588, 18, 200, 70, 45]
+
+# Import pandas as pd
+import pandas as pd 
+
+# Create dictionary my_dict with three key:value pairs: my_dict
+my_dict = {'country':names, 'drives_right': dr, 'cars_per_cap':cpc}
+
+# Build a DataFrame cars from my_dict: cars
+cars=pd.DataFrame(my_dict)
+
+# Print cars
+print(cars)
+```
+
+EXERCISE 2
+
+specify the row labels by setting cars.index equal to row_labels. 
+``` python 
+# Pre-defined lists
+names = ['United States', 'Australia', 'Japan', 'India', 'Russia', 'Morocco', 'Egypt']
+dr =  [True, False, False, False, True, True, True]
+cpc = [809, 731, 588, 18, 200, 70, 45]
+
+# Import pandas as pd
+import pandas as pd 
+
+# Create dictionary my_dict with three key:value pairs: my_dict
+my_dict = {'country':names, 'drives_right': dr, 'cars_per_cap':cpc}
+
+# Build a DataFrame cars from my_dict: cars
+cars=pd.DataFrame(my_dict)
+
+# Print cars
+print(cars)
+```
+
+**Select and Index**
+
+misalkan ingin mengambil salah satu kolom pada tabel. Bagaimana cara melakukannya dengan tanda kurung siku. maka : 
+```python 
+brics['country']
+atau 
+
+brics[['country']] #untuk menyimpan datanya
+```
+atau bisa juga menngambil lebih dari 1 kolom 
+``` python 
+brics[['country', 'capital']]
+atau juga 
+brics[1:4] #mengambil kolom mulai dari 1 ke 4
+```
+Pandas terdiri dari 2 komponen 
+1. Loc (label based)
+
+2. iLoc (integer position-based)
+
+
+
+
