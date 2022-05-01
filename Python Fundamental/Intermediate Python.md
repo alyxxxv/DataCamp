@@ -328,6 +328,55 @@ Pandas terdiri dari 2 komponen
 
 2. iLoc (integer position-based)
 
+contoh penggunaan 
+``` python 
+brics.loc['RU']
+```
+untuk memilih lebih dari 1 baris, maka contohnya adalah sebagai berikut: 
+``` python 
+brics.loc[['RU', 'IN', 'CH']]
+```
+
+anda juga dapat menggunakan loc untuk memilih semua baris tetapi hanya sejumlah kolom tertentu. contohnya: 
+``` python 
+brics.loc[['RU', 'IN', 'CH'], ['country', 'capital']]
+```
+memilih semua baris tetapi hanya kolom tertentu, maka : 
+```python 
+brics.loc[:, ['country', 'capital']] #tanda titik dua menandakan semua baris
+```
+sama seperti loc, penggunaan iloc hampir mirip namun lebih ke index yang berupa integer. 
+``` python 
+brics.iloc[[1,2,3], [0,1]] #ingat kalau index berawal dari 0. 
+```
+exercise 
+``` python 
+# Import cars data
+import pandas as pd
+cars = pd.read_csv('cars.csv', index_col = 0)
+
+# Print out first 3 observations
+print(cars.iloc[:3])
+
+# Print out fourth, fifth and sixth observation
+print(cars.iloc[3:6])
+```
+
+Exercise using Loc and Iloc
+``` python 
+# Import cars data
+import pandas as pd
+cars = pd.read_csv('cars.csv', index_col = 0)
+
+# Print out drives_right value of Morocco
+print(cars.loc[['MOR'], ['drives_right']])
+
+# Print sub-DataFrame
+print(cars.loc[['RU', 'MOR'], ['country', 'drives_right']])
+```
+
+# Logic, Control Flow, and Filtering
+
 
 
 
