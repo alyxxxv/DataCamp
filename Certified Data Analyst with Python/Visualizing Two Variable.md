@@ -6,3 +6,13 @@ Scatter plot digunakan ketika kita memiliki dua variabel yang berbeda dan bersif
 Scatterplot juga bisa dijadikan sebagai korelasi. berikut merupakan contoh dari korelasi pada scatterplot. 
 
 <img width="532" alt="2022-07-14_08h31_41" src="https://user-images.githubusercontent.com/87213160/178868765-13b5e9de-20a3-45a2-b32e-7f758b718a69.png">
+
+# Bar Plots
+
+kapan digunakan?
+
+1. Ketika kamu punya data ketegorikal 
+
+2. Kamu ingin menghitung jumlah atau percentase dari tiap kategori. 
+
+
