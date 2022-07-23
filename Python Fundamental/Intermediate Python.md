@@ -576,6 +576,15 @@ for height in fam:
 
 <img width="370" alt="2022-07-23_20h01_13" src="https://user-images.githubusercontent.com/87213160/180606055-9bdc8991-1290-4aa9-b0ef-3d96cede3094.png">
 
+```python 
+# areas list
+areas = [11.25, 18.0, 20.0, 10.75, 9.50]
+
+# Change for loop to use enumerate() and update print()
+for index, a in enumerate(areas) :
+    print("room " + str(index) + ": " + str(a) )
+```
+
 
 
 
