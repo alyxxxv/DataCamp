@@ -556,5 +556,26 @@ print(medium)
 
 **While Loops**
 
+```python 
+error = 50
+while error > 1:
+    error = error / 4
+    print(error)
+```
+
+Exercise : ada di link --> https://colab.research.google.com/drive/1EuaVg8bcIccS1nbUdsdLGWu1FXny9c1c?usp=sharing
+
+**For Loop**
+
+```python 
+fam = [1.73, 1.68, 1.71, 1.89]
+for height in fam: 
+    print(height)
+```
+<img width="378" alt="2022-07-23_19h57_27" src="https://user-images.githubusercontent.com/87213160/180605922-5362ca6b-6f10-4bc6-9c15-e04c029d226b.png">
+
+<img width="370" alt="2022-07-23_20h01_13" src="https://user-images.githubusercontent.com/87213160/180606055-9bdc8991-1290-4aa9-b0ef-3d96cede3094.png">
+
+
 
 
