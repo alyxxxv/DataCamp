@@ -121,6 +121,64 @@ mojave_homelessness = homelessness[homelessness["state"].isin(canu)]
 print(mojave_homelessness)
 ```
 
+**Adding New Column**
+
+```python 
+dogs["height_m"]=dogs["height_cm"]/100
+print(dogs)
+```
+Doggy Mass Index 
+```python 
+dogs["bmi"] = dogs["weight_kg"]/dogs["height_m"]**2
+print(dogs.head())
+```
+<img width="430" alt="2022-07-27_21h14_26" src="https://user-images.githubusercontent.com/87213160/181269668-f9e2401a-f3e7-4c50-8d1d-bd41c148bec7.png">
+
+**Multiple Manipulaions**
+```python 
+bmi_lt_100 = dogs[dogs["bmi"]<100]
+bmi_lt_100_height = bmi_lt_100.sort_values("height_cm", ascending = False)
+bmi_lt_100_height[["name", "height_cm", "bmi"]]
+```
+
+EXERCISE 1
+
+Add a new column to homelessness, named total, containing the sum of the individuals and family_members columns.
+Add another column to homelessness, named p_individuals, containing the proportion of homeless people in each state who are individuals.
+
+```python 
+# Add total col as sum of individuals and family_members
+homelessness["total"] = homelessness["individuals"] + homelessness["family_members"]
+# Add p_individuals col as proportion of total that are individuals
+homelessness["p_individuals"] = homelessness["individuals"]/homelessness["total"]
+
+# See the result
+print(homelessness)
+```
+
+EXERCISE 2
+
+Add a column to homelessness, indiv_per_10k, containing the number of homeless individuals per ten thousand people in each state.
+Subset rows where indiv_per_10k is higher than 20, assigning to high_homelessness.
+Sort high_homelessness by descending indiv_per_10k, assigning to high_homelessness_srt.
+Select only the state and indiv_per_10k columns of high_homelessness_srt and save as result. Look at the result.
+
+```python
+# Create indiv_per_10k col as homeless individuals per 10k state pop
+homelessness["indiv_per_10k"] = 10000 *homelessness["individuals"]/ homelessness["state_pop"]
+
+# Subset rows for indiv_per_10k greater than 20
+high_homelessness = homelessness[homelessness["indiv_per_10k"] > 20]
+
+# Sort high_homelessness by descending indiv_per_10k
+high_homelessness_srt = high_homelessness.sort_values("indiv_per_10k", ascending = False)
+
+# From high_homelessness_srt, select the state and indiv_per_10k cols
+result = high_homelessness_srt[["state", "indiv_per_10k"]]
+
+# See the result
+print(result)
+```
 
 
 
