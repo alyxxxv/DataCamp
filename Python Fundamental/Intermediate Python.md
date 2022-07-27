@@ -729,4 +729,218 @@ for lab, row in cars.iterrows():
 print(cars)
 ```
 
+# Case Study: Hacker Statistics
+
+**Random Number**
+
+```python 
+import numpy as np  #Pseudo-random number
+np.random.rand()
+```
+suppose we set it to 123, just a number I chose, then, we see the random number is 
+```python 
+np.random.seed(123) #starting from seed
+np.random.rand()    #ensures "reproducibility"
+```
+
+**Coin toss**
+```python 
+import numpy as np
+np.random.seed(123)
+coin = np.random.randint(0,2) #randomly generate 0 or 1
+print(coin)
+if coin == 0: 
+    print("heads")
+else: 
+    print("tails")
+```
+EXERCISE 1
+```python 
+# Import numpy as np
+import numpy as np
+
+# Set the seed
+np.random.seed(123)
+
+# Generate and print random float
+print(np.random.rand())
+```
+**Roll the Dice**
+In the previous exercise, you used rand(), that generates a random float between 0 and 1.
+
+As Hugo explained in the video you can just as well use randint(), also a function of the random package, to generate integers randomly. The following call generates the integer 4, 5, 6 or 7 randomly. 8 is not included.
+
+```python
+# Import numpy and set seed
+import numpy as np
+np.random.seed(123)
+
+# Use randint() to simulate a dice
+print(np.random.randint(1,7))
+# Use randint() again
+print(np.random.randint(1,7))
+```
+EXERCISE 3
+
+If dice is 1 or 2, you go one step down.
+if dice is 3, 4 or 5, you go one step up.
+Else, you throw the dice again. The number of eyes is the number of steps you go up.
+Print out dice and step. Given the value of dice, was step updated correctly?
+
+```python 
+# NumPy is imported, seed is set
+
+# Starting step
+step = 50
+
+# Roll the dice
+dice = np.random.randint(1,7)
+
+# Finish the control construct
+if dice <= 2 :
+    step = step - 1
+elif dice <=5 :
+    step = step +1
+else :
+    step = step + np.random.randint(1,7)
+
+# Print out dice and step
+print(dice)
+print(step)
+```
+
+**Random Walk**
+
+Head or tails 
+```python 
+import numpy as np
+np.random.seed(123)
+outcomes = []
+for x in range(10):
+    coin = np.random.randint(0,2)
+    if coin == 0: 
+        outcomes.append("heads")
+    else : 
+        outcomes.append("tails")
+print(outcomes)
+```
+Output: 
+
+<img width="292" alt="2022-07-27_13h34_24" src="https://user-images.githubusercontent.com/87213160/181177836-015f7f6f-666c-488a-85eb-68d1eb4b8443.png">
+
+Random Walks
+``` python 
+import numpy as np 
+np.random.seed(123)
+tails = [0]
+for x in range(10): 
+    coin = np.random.randint(0,2)
+    tails.append(tails[x] + coin)
+print(tails)
+```
+Output: 
+
+<img width="295" alt="2022-07-27_13h35_59" src="https://user-images.githubusercontent.com/87213160/181178121-ae89b64f-0f57-454b-aa50-a47db6a17170.png">
+
+EXERCISE 1 
+
+Make a list random_walk that contains the first step, which is the integer 0.
+Finish the for loop:
+The loop should run 100 times.
+On each iteration, set step equal to the last element in the random_walk list. You can use the index -1 for this.
+Next, let the if-elif-else construct update step for you.
+The code that appends step to random_walk is already coded.
+Print out random_walk.
+
+```python 
+# NumPy is imported, seed is set
+
+# Initialize random_walk
+random_walk = [0]
+
+# Complete the ___
+for x in range(100) :
+    # Set step: last element in random_walk
+    step = random_walk[-1]
+
+    # Roll the dice
+    dice = np.random.randint(1,7)
+
+    # Determine next step
+    if dice <= 2:
+        step = step - 1
+    elif dice <= 5:
+        step = step + 1
+    else:
+        step = step + np.random.randint(1,7)
+
+    # append next_step to random_walk
+    random_walk.append(step)
+
+# Print random_walk
+print(random_walk)
+```
+
+EXERCISE 2 : 
+
+Use max() in a similar way to make sure that step doesn't go below zero if dice <= 2.
+Hit Submit Answer and check the contents of random_walk.
+
+```python 
+# NumPy is imported, seed is set
+
+# Initialize random_walk
+random_walk = [0]
+
+for x in range(100) :
+    step = random_walk[-1]
+    dice = np.random.randint(1,7)
+
+    if dice <= 2:
+        # Replace below: use max to make sure step can't go below 0
+        step = max(0, step - 1)
+    elif dice <= 5:
+        step = step + 1
+    else:
+        step = step + np.random.randint(1,7)
+
+    random_walk.append(step)
+
+print(random_walk)
+```
+
+EXERCISE 3 : 
+
+Plot random_walk in Matplotlib 
+
+```python 
+# NumPy is imported, seed is set
+
+# Initialization
+random_walk = [0]
+
+for x in range(100) :
+    step = random_walk[-1]
+    dice = np.random.randint(1,7)
+
+    if dice <= 2:
+        step = max(0, step - 1)
+    elif dice <= 5:
+        step = step + 1
+    else:
+        step = step + np.random.randint(1,7)
+
+    random_walk.append(step)
+
+# Import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
+
+# Plot random_walk
+plt.plot(random_walk)
+
+# Show the plot
+plt.show()
+```
+
+<img width="348" alt="2022-07-27_13h42_40" src="https://user-images.githubusercontent.com/87213160/181179279-7907caf4-7bc2-403f-98dd-acf2c2854cf7.png">
 
