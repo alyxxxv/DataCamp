@@ -108,7 +108,18 @@ dogs[is_black_or_brown]
 ```
 <img width="427" alt="2022-07-27_19h02_30" src="https://user-images.githubusercontent.com/87213160/181242134-5c6a4781-0f57-4ae4-abcb-f2c40cd98937.png">
 
+Exercise : 
+Filter homelessness for cases where the USA census state is in the list of Mojave states, canu, assigning to mojave_homelessness. View the printed result.
+```python 
+# The Mojave Desert states
+canu = ["California", "Arizona", "Nevada", "Utah"]
 
+# Filter for rows in the Mojave Desert states
+mojave_homelessness = homelessness[homelessness["state"].isin(canu)]
+
+# See the result
+print(mojave_homelessness)
+```
 
 
 
