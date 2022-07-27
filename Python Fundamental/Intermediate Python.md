@@ -585,7 +585,7 @@ for index, a in enumerate(areas) :
     print("room " + str(index) + ": " + str(a) )
 ```
 
-**Loop Data Structure**
+**Loop Data Structure Part 1**
 
 melakukan perulangan untuk dictionary 
 
@@ -631,5 +631,85 @@ meas = np.array([np_height, np_weight])
 
 for val in np.nditer(meas) :
     print(val)
+```
+<img width="210" alt="2022-07-27_09h35_24" src="https://user-images.githubusercontent.com/87213160/181148430-1ea05a7c-a162-459b-9212-f2535028996e.png">
+
+EXERCISE 1 
+```python 
+# Definition of dictionary
+europe = {'spain':'madrid', 'france':'paris', 'germany':'berlin',
+          'norway':'oslo', 'italy':'rome', 'poland':'warsaw', 'austria':'vienna' }
+          
+# Iterate over europe
+for key, value in europe.items(): 
+    print("the capital of " + key + " is " + str(value) )
+```
+Output : 
+
+<img width="171" alt="2022-07-27_09h40_05" src="https://user-images.githubusercontent.com/87213160/181148928-96695cad-d279-4011-a7b2-a06910a50f22.png">
+
+EXERCISE 2: 
+
+Import the numpy package under the local alias np.
+
+Write a for loop that iterates over all elements in np_height and prints out "x inches" for each element, where x is the value in the array.
+
+Write a for loop that visits every element of the np_baseball array and prints it out.
+
+```python 
+# Import numpy as np
+import numpy as np
+
+# For loop over np_height
+for x in np_height: 
+    print(str(x) + " inches")
+
+# For loop over np_baseball
+for x in np.nditer(np_baseball): 
+    print(x)
+```
+
+**Loop Data Structures Part 2**
+
+```python 
+import pandas as pd 
+brics = pd.read_csv('brics.csv', index_col = 0 )
+
+for val in brics : 
+    print(val)
+```
+iterrows
+```python 
+import pandas as pd 
+brics = pd.read_csv('brics.csv', index_col = 0 )
+
+for lab, row in brics.iterrows() : 
+    print(lab)
+    print(row)
+```
+Selective Print 
+```python 
+import pandas as pd 
+brics = pd.read_csv("brics.csv", index_col = 0) 
+for lab, row in brics.iterrow(): 
+    print(lab + ": " +row["capital"])
+```
+Add column 
+ ``` python 
+ import pandas as pd 
+ brics = pd.read_csv("brics.csv", index_col = 0)
+ for lab, row in brics.iterrows() : 
+    #Creating series on every iteration 
+    brics.loc[lab, "name_lenght"] = len(row["country"])
+print(brics)
+```
+<img width="293" alt="2022-07-27_10h05_04" src="https://user-images.githubusercontent.com/87213160/181151847-ed73fd8e-e469-4e3d-a2d6-14fa263d7601.png">
+
+apply a function in particular columns. 
+```python 
+import pandas as pd 
+brics = pd.read_csv("brics.csv", index_col = 0)
+brics["name_length"] = brics["country"].apply(len)
+print(brics)
 ```
 
