@@ -215,4 +215,78 @@ dogs.groupby(["color", "breed"])[["Weight_kg", "height_cm"]].mean()
 ```
 <img width="244" alt="2022-07-28_10h03_21" src="https://user-images.githubusercontent.com/87213160/181411256-384064c8-e6f8-4061-99bf-1aa0465e4915.png">
 
+EXERCISE 1
+
+Calculate the total weekly_sales over the whole dataset.
+Subset for type "A" stores, and calculate their total weekly sales.
+Do the same for type "B" and type "C" stores.
+Combine the A/B/C results into a list, and divide by sales_all to get the proportion of sales by type.
+
+```python
+# Calc total weekly sales
+sales_all = sales["weekly_sales"].sum()
+
+# Subset for type A stores, calc total weekly sales
+sales_A = sales[sales["type"] == "A"]["weekly_sales"].sum()
+
+# Subset for type B stores, calc total weekly sales
+sales_B = sales[sales["type"] == "B"]["weekly_sales"].sum()
+
+# Subset for type C stores, calc total weekly sales
+sales_C = sales[sales["type"] == "C"]["weekly_sales"].sum()
+
+# Get proportion for each type
+sales_propn_by_type = [sales_A, sales_B, sales_C] / sales_all
+print(sales_propn_by_type)
+```
+
+EXERCISE 2 
+
+Group sales by "type", take the sum of "weekly_sales", and store as sales_by_type.
+Calculate the proportion of sales at each store type by dividing by the sum of sales_by_type. Assign to sales_propn_by_type.
+
+```python
+# Group by type; calc total weekly sales
+sales_by_type = sales.groupby("type")["weekly_sales"].sum()
+
+# Get proportion for each type
+sales_propn_by_type = sales_by_type / sum(sales_by_type)
+print(sales_propn_by_type)
+```
+
+Group sales by "type" and "is_holiday", take the sum of weekly_sales, and store as sales_by_type_is_holiday.
+```python
+# From previous step
+sales_by_type = sales.groupby("type")["weekly_sales"].sum()
+
+# Group by type and is_holiday; calc total weekly sales
+sales_by_type_is_holiday = sales.groupby(["type", "is_holiday"])["weekly_sales"].sum()
+print(sales_by_type_is_holiday)
+```
+
+EXERCISE 2
+
+Import numpy with the alias np.
+Get the min, max, mean, and median of weekly_sales for each store type using .groupby() and .agg(). Store this as sales_stats. Make sure to use numpy functions!
+Get the min, max, mean, and median of unemployment and fuel_price_usd_per_l for each store type. Store this as unemp_fuel_stats.
+
+```python
+# Import numpy with the alias np
+import numpy as np
+
+# For each store type, aggregate weekly_sales: get min, max, mean, and median
+sales_stats = sales.groupby("type")["weekly_sales"].agg([min, max, np.mean, np.median])
+
+# Print sales_stats
+print(sales_stats)
+
+# For each store type, aggregate unemployment and fuel_price_usd_per_l: get min, max, mean, and median
+unemp_fuel_stats = sales.groupby("type")[["unemployment", "fuel_price_usd_per_l"]].agg([min, max, np.mean, np.median])
+
+# Print unemp_fuel_stats
+print(unemp_fuel_stats)
+```
+**Pivot Tables*
+
+
 
