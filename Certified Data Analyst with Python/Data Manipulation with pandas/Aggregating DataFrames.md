@@ -108,4 +108,111 @@ print(sales_1_1[["date", "weekly_sales", "cum_weekly_sales", "cum_max_sales"]])
 
 **Counting**
 
+Cara menghapus nama yang duplikat 
+```python 
+vet_visits.drop_duplicates(subset="name")
+```
+atau drop multiple column 
+```python 
+unique_dogs = vet_visits.drop_duplicates(subset=["name", "breed"])
+print(unique_dogs)
+```
+
+Untuk menghitung jumlah unique value pada dogs, maka: 
+```python 
+unique_dogs["breed"].value_counts()
+#atau
+unique_dogs["breed"].value_counts(sort=True) #menggunakan sort argumen
+```
+
+menghitung proportion 
+```python 
+unique_dogs["breed"].value_counts(normalize=True)
+```
+
+EXERCISE 1
+
+Remove rows of sales with duplicate pairs of store and type and save as store_types and print the head.
+Remove rows of sales with duplicate pairs of store and department and save as store_depts and print the head.
+Subset the rows that are holiday weeks using the is_holiday column, and drop the duplicate dates, saving as holiday_dates.
+Select the date column of holiday_dates, and print.
+
+```python
+# Drop duplicate store/type combinations
+store_types = sales.drop_duplicates(subset=["store", "type"])
+print(store_types.head())
+
+# Drop duplicate store/department combinations
+store_depts = sales.drop_duplicates(subset=["store", "department"])
+print(store_depts.head())
+
+# Subset the rows where is_holiday is True and drop duplicate dates
+holiday_dates = sales[sales["is_holiday"] == True ].drop_duplicates(subset="date")
+
+# Print date col of holiday_dates
+print(holiday_dates["date"])
+```
+
+**Counting Categorical Variables**
+
+Counting is a great way to get an overview of your data and to spot curiosities that you might not notice otherwise. In this exercise, you'll count the number of each type of store and the number of each department number using the DataFrames you created in the previous exercise:
+```python
+# Drop duplicate store/type combinations
+store_types = sales.drop_duplicates(subset=["store", "type"])
+
+# Drop duplicate store/department combinations
+store_depts = sales.drop_duplicates(subset=["store", "department"])
+```
+EXERCISE 2 : 
+
+Count the number of stores of each store type in store_types.
+Count the proportion of stores of each store type in store_types.
+Count the number of different departments in store_depts, sorting the counts in descending order.
+Count the proportion of different departments in store_depts, sorting the proportions in descending order
+
+```python
+# Count the number of stores of each type
+store_counts = store_types["type"].value_counts()
+print(store_counts)
+
+# Get the proportion of stores of each type
+store_props = store_types["type"].value_counts(normalize=True)
+print(store_props)
+
+# Count the number of each department number and sort
+dept_counts_sorted = store_depts["department"].value_counts(sort=True)
+print(dept_counts_sorted)
+
+# Get the proportion of departments of each number and sort
+dept_props_sorted = store_depts["department"].value_counts(sort=True, normalize=True)
+print(dept_props_sorted)
+```
+
+**Grouped summary statistics**
+
+Grouped Summaries 
+``` python 
+dogs.groupby("color").["weight_kg"].mean()
+```
+
+<img width="427" alt="2022-07-28_09h59_38" src="https://user-images.githubusercontent.com/87213160/181410790-ddd0733c-191d-4abc-b1a1-514a674a451d.png">
+
+Multipled Grouped Summaries
+``` python 
+dogs.groupby("color").["weight_kg"].agg([min, max, sum])
+```
+<img width="432" alt="2022-07-28_10h00_38" src="https://user-images.githubusercontent.com/87213160/181410934-58f29b9c-dc77-4edc-82af-55ec0ef1f7da.png">
+
+Grouping by multiple variables
+```python 
+dogs.groupby(["color", "breed"])["weight"].mean()
+```
+<img width="241" alt="2022-07-28_10h01_58" src="https://user-images.githubusercontent.com/87213160/181411090-1c053d53-239d-4e33-af18-91ea73777c00.png">
+
+Many Groups, many summaries
+``` python 
+dogs.groupby(["color", "breed"])[["Weight_kg", "height_cm"]].mean()
+```
+<img width="244" alt="2022-07-28_10h03_21" src="https://user-images.githubusercontent.com/87213160/181411256-384064c8-e6f8-4061-99bf-1aa0465e4915.png">
+
 
