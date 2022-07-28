@@ -288,5 +288,38 @@ print(unemp_fuel_stats)
 ```
 **Pivot Tables*
 
+untuk mengetahui summary statistic dari sebuah data. 
+```python 
+dogs.pivot_table(values="weight_kg", index="color")
+```
+<img width="219" alt="2022-07-28_11h44_41" src="https://user-images.githubusercontent.com/87213160/181422460-392c09a5-f796-4350-b4eb-de1e2d079870.png">
 
+secara default, pivot table melakukan operasi nilai mean. Untuk mengubahnya, maka kita bisa menggunakan syntax aggfunc=...
+``` python 
+import numpy as n 
+dogs.pivot_table(values="weight_kg", index="color", aggfunc=np.median)
+```
+multiple function
+``` python 
+import numpy as n 
+dogs.pivot_table(values="weight_kg", index="color", aggfunc=[np.mean, np.median)]
+```
+<img width="168" alt="2022-07-28_11h50_04" src="https://user-images.githubusercontent.com/87213160/181423062-c1f1827f-cd53-4da6-9830-931dc488e67e.png">
 
+Pivot on two variables. 
+ ```python 
+ dogs.pivot_table(values="weight_kg", index="color", columns="breed")
+ ```
+ <img width="316" alt="2022-07-28_11h51_53" src="https://user-images.githubusercontent.com/87213160/181423240-8584f692-7c8a-4501-ad67-176bed810213.png">
+ 
+nilai Nan itu merupakan missing value. Untuk mengisi missing value, maka kita bisa menggunakan dengan syntax fill_value = 0 
+```python 
+ dogs.pivot_table(values="weight_kg", index="color", columns="breed", fill_value=0)
+ ```
+ <img width="427" alt="2022-07-28_11h53_20" src="https://user-images.githubusercontent.com/87213160/181423408-420bce87-9d2a-4670-9a70-d9d9370829e0.png">
+
+Jika kita mensetting marginnya, maka terdapat rata-rata dari keseluruhan baris dan kolom. seperti berikut: 
+```python
+dogs.pivot_table(values="weight_kg", index="color", columns="breed", fill_value=0, margins=True)
+```
+<img width="430" alt="2022-07-28_11h55_09" src="https://user-images.githubusercontent.com/87213160/181423621-c515e847-fc9a-47ad-9eee-c711a5c60d18.png">
