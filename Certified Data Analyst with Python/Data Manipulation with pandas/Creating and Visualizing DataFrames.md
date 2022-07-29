@@ -115,5 +115,140 @@ plt.show()
 
 **Handling Missing Values**
 
+detect missing value. 
+```python 
+dogs.isna()
+```
+detect any missing value in variable 
+```python 
+dogs.isna().any()
+```
+Counting missing value 
+```python 
+dogs.isna().sum()
+```
+Plotting Missing Value
+```python 
+dogs.isna().sum().plot(kind="bar")
+plt.show()
+```
+<img width="198" alt="2022-07-29_10h10_04" src="https://user-images.githubusercontent.com/87213160/181674930-67014414-8c1a-4f84-97f8-c7f061b68e27.png">
 
+Removing Missing Value
+```python 
+dogs.dropna()
+```
+atau bisa mengisi missing value dengan 0
+
+```python 
+dogs.fillna(0)
+```
+
+EXERCISE 1 
+
+```python 
+# Import matplotlib.pyplot with alias plt
+import matplotlib.pyplot as plt
+
+# Check individual values for missing values
+print(avocados_2016.isna())
+
+# Check each column for missing values
+print(avocados_2016.isna().any())
+
+# Bar plot of missing values by variable
+avocados_2016.isna().sum().plot(kind="bar")
+
+# Show plot
+plt.show()
+```
+
+<img width="714" alt="2022-07-29_10h14_49" src="https://user-images.githubusercontent.com/87213160/181675406-65843611-c61c-4893-8645-1c91822839b4.png">
+
+EXERCISE 2
+
+Replace the missing values of avocados_2016 with 0s and store the result as avocados_filled.
+Create a histogram of the cols_with_missing columns of avocados_filled.
+
+```python 
+# From previous step
+cols_with_missing = ["small_sold", "large_sold", "xl_sold"]
+avocados_2016[cols_with_missing].hist()
+plt.show()
+
+# Fill in missing values with 0
+avocados_filled = avocados_2016.fillna(0)
+
+# Create histograms of the filled columns
+avocados_filled[cols_with_missing].hist()
+
+# Show the plot
+plt.show()
+```
+<img width="455" alt="2022-07-29_10h23_51" src="https://user-images.githubusercontent.com/87213160/181676267-7c83bb6f-a0dc-4ecf-8cd4-1a4e27e51ca1.png">
+
+**Creating DataFrames**
+
+<img width="234" alt="2022-07-29_10h47_09" src="https://user-images.githubusercontent.com/87213160/181678774-62614e34-d64f-4feb-a93e-24e7976af2c8.png">
+
+<img width="325" alt="2022-07-29_10h49_28" src="https://user-images.githubusercontent.com/87213160/181679012-3f7cdb0e-7be4-4a7a-bebb-8b1f78b76473.png">
+
+```python 
+new_dogs=pd.DataFrame(list_of_dicts)
+print(new_dogs)
+```
+<img width="436" alt="2022-07-29_10h52_15" src="https://user-images.githubusercontent.com/87213160/181679256-25013a3c-cabd-4bc8-b14a-4bfc53010043.png">
+
+EXERCISE 1
+
+Create a list of dictionaries with the new data called avocados_list.
+Convert the list into a DataFrame called avocados_2019.
+Print your new DataFrame.
+
+```python
+# Create a list of dictionaries with new data
+avocados_list = [
+    {"date": "2019-11-03", "small_sold": 10376832, "large_sold": 7835071},
+    {"date": "2019-11-10", "small_sold": 10717154, "large_sold": 8561348},
+]
+
+# Convert list into DataFrame
+avocados_2019 = pd.DataFrame(avocados_list)
+
+# Print the new DataFrame
+print(avocados_2019)
+```
+
+EXERCISE 2
+
+Create a dictionary of lists with the new data called avocados_dict.
+Convert the dictionary to a DataFrame called avocados_2019.
+Print your new DataFrame.
+
+```python 
+# Create a dictionary of lists with new data
+avocados_dict = {
+  "date": ["2019-11-17", "2019-12-01"],
+  "small_sold": [10859987, 9291631],
+  "large_sold": [7674135, 6238096]
+}
+
+# Convert dictionary into DataFrame
+avocados_2019 = pd.DataFrame(avocados_dict)
+
+# Print the new DataFrame
+print(avocados_2019)
+```
+
+**Reading and writing CSVs**
+
+```python 
+import pandas as pd 
+new_dogs=pd.read_csv('new_dogs.csv')
+print(new_dogs)
+```
+Convert DataFrame to CSV 
+```python 
+new_dogs.to_csv("new_dogs_with_bmi.csv")
+```
 
