@@ -97,6 +97,9 @@ result = raise_both(2,3)
 print(result)
 ```
 
+![2023-02-19_16h35_05](https://user-images.githubusercontent.com/87213160/219940257-c0b91fa0-b4f4-4294-8250-a90afc1d4279.png)
+
+![2023-02-19_16h36_05](https://user-images.githubusercontent.com/87213160/219940260-10b846f6-e3d5-4e41-9038-c5bd0f1980f2.png)
 
 
 
